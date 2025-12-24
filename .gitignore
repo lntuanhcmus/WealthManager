@@ -1,0 +1,15 @@
+# .NET (if not already there)
+bin/
+obj/
+*.user
+.vs/
+# Frontend (ADD THESE)
+node_modules/
+dist/
+.angular/
+.nx/
+*.log
+npm-debug.log*
+.env.local
+coverage/
+logs/
