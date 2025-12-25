@@ -25,6 +25,18 @@ try
     builder.Services.AddFinanceModule(builder.Configuration);
     builder.Services.AddIdentityModule(builder.Configuration);
 
+    // Configure CORS for Angular UI
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAngularDevClient", policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+    });
+
     builder.Services.AddApplicationHealthChecks();
 
 
@@ -32,11 +44,16 @@ try
 
     var app = builder.Build();
 
+
     app.UseMiddleware<ExceptionHandlingMiddleware>();
     app.UseSerilogRequestLoggingWithEnrichment();
     app.UseMiddleware<RequestLoggingMiddleware>();
 
+
     app.UseHttpsRedirection();
+
+    app.UseCors("AllowAngularDevClient");
+
     app.UseAuthentication();
     app.UseAuthorization();
 

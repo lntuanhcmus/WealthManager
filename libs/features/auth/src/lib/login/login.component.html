@@ -1,0 +1,39 @@
+<div class="min-h-screen flex items-center justify-center bg-surface-50">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-primary-900">Wealth Manager</h2>
+            <p class="text-gray-500 mt-2">Welcome back! Please login to your account.</p>
+        </div>
+
+        <!-- Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <!-- Input Email-->
+            <div class="flex flex-col gap-2">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                    placeholder="Enter your email">
+            </div>
+
+            <!-- Input Password -->
+            <div class="flex flex-col gap-2">
+                <label class="font-medium text-gray-700">Password</label>
+                <input pInputText type="password" formControlName="password"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus-ring-2 focus:ring-primary-500 outline-none transition-all"
+                    placeholder="*********" />
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="bg-red-50 text-error p-3 rounded-lg text-sm flex items-center gap-2">
+                <i class="pi pi-exclamation-circle"></i>
+                {{errorMessage}}
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid"
+                class="w-full bg-primary-700 hover:bg-primary-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                Sign In
+            </button>
+        </form>
+    </div>
+</div>

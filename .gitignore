@@ -13,3 +13,7 @@ npm-debug.log*
 .env.local
 coverage/
 logs/
+.nx/installation
+.nx/cache
+.nx/workspace-data
+.angular
